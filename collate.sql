@@ -18,7 +18,7 @@ ALTER DATABASE Nome_banco  SET MULTI_USER;
 SELECT c.name as 'coluna', t.name as 'tabela', c.collation_name
 from sys.columns as c 
 inner join sys.tables as t on c.object_id  = t.object_id 
-where collation_name  is not null c.is_nullable = 0
+where collation_name  is not null AND c.is_nullable = 0
 and t.type = 'U'
 ORDER BY 2;
 GO
