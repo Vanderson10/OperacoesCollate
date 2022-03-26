@@ -14,11 +14,11 @@ ALTER DATABASE Nome_banco  COLLATE SQL_Latin1_General_CP1_CI_AI;
 GO 
 ALTER DATABASE Nome_banco  SET MULTI_USER; 
 
-/*verificar os collates de cada coluna*/
+/*verificar os collates de cada coluna c.is_nullable = 0 para colunas NOT NULL e = 1...*/
 SELECT c.name as 'coluna', t.name as 'tabela', c.collation_name
 from sys.columns as c 
 inner join sys.tables as t on c.object_id  = t.object_id 
-where collation_name  is not null 
+where collation_name  is not null c.is_nullable = 0
 and t.type = 'U'
 ORDER BY 2;
 GO
